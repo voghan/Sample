@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="schedules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="reservations"/>
+      </xs:sequence>
+      <xs:attribute name="current_page" use="required" type="xs:integer"/>
+      <xs:attribute name="total_pages" use="required" type="xs:integer"/>
+      <xs:attribute name="total_records" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reservations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="reservation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reservation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="club"/>
+        <xs:element ref="description"/>
+        <xs:element ref="resource_type"/>
+        <xs:element ref="resource"/>
+        <xs:element ref="display_date"/>
+        <xs:element ref="start_time"/>
+        <xs:element ref="end_time"/>
+        <xs:element ref="cancelled"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="club">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attribute name="id" use="required" type="xs:integer"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="resource_type">
+    <xs:complexType mixed="true">
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resource" type="xs:string"/>
+  <xs:element name="display_date" type="xs:NMTOKEN"/>
+  <xs:element name="start_time" type="xs:string"/>
+  <xs:element name="end_time" type="xs:string"/>
+  <xs:element name="cancelled" type="xs:boolean"/>
+</xs:schema>
